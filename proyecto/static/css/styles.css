@@ -1,0 +1,25 @@
+header, footer{
+    background-color: var(--primary);
+    color: var(--primary-inverse);
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+body{
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 50px 1 fr auto;
+    margin:0;
+}
+
+ul.errors{
+    color:red;
+    font-weight: bold;
+    font-size: :0.8em;
+}
+
+ul.flashes{
+    color:greenyellow;
+    font-weight: bold;
+    font-size: :0.8em;
+}

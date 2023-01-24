@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cryptos App: {{pageTitle}}</title>
+    <link rel="stylesheet" href="/static/css/pico.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            MyCryptos App 
+        </div>
+        
+    </header>
+    <nav class="container">
+        <ul>
+            <li><a href="/"></a>Inicio</li>
+            <li> <a href="/purchase"></a> Compra</li>
+            <li> <a href="/status"></a> Estado</li>
+        </ul>
+    </nav>
+    <section class="container">
+        {% block section %}
+        {% endblock %}
+
+    </section>
+    <footer>
+        <div class="container">
+            &copy; 2023 - Todos los derechos reservados
+        </div>
+    </footer>
+    
+</body>
+</html>
