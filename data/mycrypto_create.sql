@@ -1,10 +1,10 @@
- CREATE TABLE "mycrypto" (
+CREATE TABLE "mycrypto" (
 	"id"	INTEGER,
-	"date"	TEXT,
-	"time"	TEXT,
-	"moneda_from"	TEXT,
-	"cantidad_from"	NUMERIC,
-	"moneda_to"	TEXT,
-	"cantidad_to"	NUMERIC,
+	"date"	TEXT NOT NULL,
+	"time"	TEXT NOT NULL,
+	"moneda_from"	TEXT NOT NULL,
+	"cantidad_from"	REAL NOT NULL,
+	"moneda_to"	TEXT NOT NULL,
+	"cantidad_to"	REAL NOT NULL,
 	PRIMARY KEY("id" AUTOINCREMENT)
 );

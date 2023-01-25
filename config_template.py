@@ -1,0 +1,2 @@
+ORIGIN_DATA = "data/mycrypto.sqlite"
+APIKEY = "METER CLAVE OBTENIDA EN LA API COINAPI"
