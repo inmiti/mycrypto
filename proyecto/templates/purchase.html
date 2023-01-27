@@ -8,7 +8,7 @@
         <!-- Markup example 1: input is inside label -->
         <label for="moneda_from">
             From:
-            <select id="moneda_to" required>
+            <select id="moneda_from" required>
             <option value="" selected>Seleccione moneda</option>
             <option>EUR</option>
             <option>BTC</option>
@@ -38,9 +38,9 @@
     </div>
 
     <div class="grid">
-        <label for="Q (From)">
+        <label for="cantidad_from">
             Q (From):
-            <input type="number" id="cantidad_from" name="cantidad_from" placeholder="Introduzca cantidad en moneda from" step="0.01" required>
+            <input type="number" id="cantidad_from" name="cantidad_from" placeholder="Introduzca cantidad en moneda from" step="0.01" >
             </label>
 
             <a class="calcular" href="#">
@@ -50,15 +50,27 @@
                     <small>Calcular</small>
                 </a>
 
-        <label for="Q (To)">
+        <label for="cantidad_to">
             Q (To):
             <input type="number" id="cantidad_to" name="cantidad_to" placeholder="Presione la calculadora" step="0.01">
             </label>
     </div>
     
+
+
     <button type="submit">Realizar operación</button>
     
 
 </form>
+
+<article >
+    <ul >
+        {% for item in msgError %}
+        <li>{{item}}</li>
+        {% endfor %}
+
+    </ul>
+</article>
+
 
 {% endblock %}
