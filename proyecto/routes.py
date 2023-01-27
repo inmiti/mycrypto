@@ -1,5 +1,5 @@
 from proyecto import app
-from flask import render_template
+from flask import render_template,request
 from proyecto.models import select_all
 
 @app.route("/")
@@ -16,6 +16,9 @@ def index():
 '''
     
 
-@app.route("/purchase")
+@app.route("/purchase",methods=["GET","POST"])
 def pursache():
-    return render_template("purchase.html", pageTitle="Compras_Ventas_Intercambios")
+    if request.method == "GET":
+        return render_template("purchase.html", pageTitle="Compras_Ventas_Intercambios")
+    else:
+        return "esto es un post"

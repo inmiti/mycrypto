@@ -2,45 +2,61 @@
 {% block section %}
 <h1>COMPRA DE CRYPTOS</h1>
 
-<form action="">
+<form action="/purchase" method="post">
     <div class="grid">
     
         <!-- Markup example 1: input is inside label -->
         <label for="moneda_from">
-        From:
-        <input type="text" id="moneda_from" name="moneda_from" placeholder="Moneda from" required>
+            From:
+            <select id="moneda_to" required>
+            <option value="" selected>Seleccione moneda</option>
+            <option>EUR</option>
+            <option>BTC</option>
+            <option>USDT</option>
+            <option>ETH</option>
+            <option>BNB</option>
+            <option>ADA</option>
+            <option>DOT</option>
+            <option>MATIC</option>
+            </select>
         </label>
     
         <label for="moneda_to">
-            To</label>
-        <select id="moneda_to" required>
-        <option value="" selected>Select a coin</option>
-        <option>EUR</option>
-        <option>BTC</option>
-        <option>USDT</option>
-        <option>ETH</option>
-        </select>
+            To
+            <select id="moneda_to" required>
+            <option value="" selected>Seleccione moneda</option>
+            <option>EUR</option>
+            <option>BTC</option>
+            <option>USDT</option>
+            <option>ETH</option>
+            <option>BNB</option>
+            <option>ADA</option>
+            <option>DOT</option>
+            <option>MATIC</option>
+            </select>
+        </label>
     </div>
 
     <div class="grid">
         <label for="Q (From)">
             Q (From):
-            <input type="text" id="cantidad_from" name="cantidad_from" placeholder="Last name" required>
+            <input type="number" id="cantidad_from" name="cantidad_from" placeholder="Introduzca cantidad en moneda from" step="0.01" required>
             </label>
 
-            <a href="#">
-            <span class="material-symbols-outlined">
-                calculate
-                </span>
-            </a>
+            <a class="calcular" href="#">
+                <span class="material-symbols-outlined">
+                    calculate
+                    </span>
+                    <small>Calcular</small>
+                </a>
 
         <label for="Q (To)">
             Q (To):
-            <input type="text" id="cantidad_to" name="cantidad_to" placeholder="Last name" required>
+            <input type="number" id="cantidad_to" name="cantidad_to" placeholder="Presione la calculadora" step="0.01">
             </label>
     </div>
     
-    <button type="submit">Submit</button>
+    <button type="submit">Realizar operación</button>
     
 
 </form>
