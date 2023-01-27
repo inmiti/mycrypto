@@ -19,3 +19,6 @@ def select_all():
         resultado.append(dato)
 
     return resultado
+
+def insert(registro):
+    pass
