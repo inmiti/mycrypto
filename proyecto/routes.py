@@ -1,6 +1,6 @@
 from proyecto import app
 from flask import render_template, request
-from proyecto.models import select_all
+from proyecto.models import *
 from datetime import date    
 
 
@@ -20,18 +20,18 @@ def inicio():
 
     registros = select_all()
     return render_template("index.html", pageTitle="Movimientos", data=registros)
-    
+    ""
 
 @app.route("/purchase",methods=["GET","POST"])
 def operar():
     if request.method == "GET":
-        return render_template("purchase.html", pageTitle="Compras_Ventas_Intercambios")
+        return render_template("purchase.html", pageTitle="Compras_Ventas_Intercambios", dataForm =None)
     else:
         errores = validateForm(request.form)
         if errores:
-            return render_template("purchase.html", pageTitle="Compras_Ventas_Intercambios", msgError=errores)
+            return render_template("purchase.html", pageTitle="Compras_Ventas_Intercambios", msgError=errores, dataForm = request.form)
         else:
-            return render_template("purchase.html", pageTitle="Compras_Ventas_Intercambios")
+            insert(request.form)
        
         
         

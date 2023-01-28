@@ -9,8 +9,8 @@
         <label for="moneda_from">
             From:
             <select id="moneda_from" name="moneda_from">
-            <option value="" selected>Seleccione moneda</option>
-            <option>EUR</option>
+            <option value="{{dataForm.moneda_from}}" >Seleccione moneda</option>
+            <option >EUR</option>
             <option>BTC</option>
             <option>USDT</option>
             <option>ETH</option>
@@ -24,7 +24,7 @@
         <label for="moneda_to">
             To
             <select id="moneda_to" name="moneda_to">
-            <option value="" selected>Seleccione moneda</option>
+            <option value="{{dataForm.moneda_to}}" selected>Seleccione moneda</option>
             <option>EUR</option>
             <option>BTC</option>
             <option>USDT</option>
@@ -40,7 +40,7 @@
     <div class="grid">
         <label for="cantidad_from">
             Q (From):
-            <input type="number" id="cantidad_from" name="cantidad_from" placeholder="Introduzca cantidad en moneda from" step="0.01" >
+            <input type="number" id="cantidad_from" name="cantidad_from" value="{{dataForm.cantidad_from}}" placeholder="Introduzca cantidad en moneda from" step="0.01" >
             </label>
 
             <a class="calcular" href="#">
@@ -52,7 +52,12 @@
 
         <label for="cantidad_to">
             Q (To):
-            <input type="number" id="cantidad_to" name="cantidad_to" placeholder="Presione la calculadora" step="0.01">
+            <input type="number" id="cantidad_to" name="cantidad_to" value="{{dataForm.cantidad_to}}" placeholder="Presione la calculadora" step="0.01">
+            </label>
+
+        <label class="contrast" for="pu">
+            PU:
+            <input type="number" id="pu" name="pu" placeholder="Precio unitario" step="0.01" >
             </label>
     </div>
     
