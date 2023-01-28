@@ -8,7 +8,7 @@
         <!-- Markup example 1: input is inside label -->
         <label for="moneda_from">
             From:
-            <select id="moneda_from" required>
+            <select id="moneda_from" name="moneda_from">
             <option value="" selected>Seleccione moneda</option>
             <option>EUR</option>
             <option>BTC</option>
@@ -23,7 +23,7 @@
     
         <label for="moneda_to">
             To
-            <select id="moneda_to" required>
+            <select id="moneda_to" name="moneda_to">
             <option value="" selected>Seleccione moneda</option>
             <option>EUR</option>
             <option>BTC</option>
@@ -56,21 +56,19 @@
             </label>
     </div>
     
-
-
-    <button type="submit">Realizar operación</button>
+    <button type="submit" value="Guardar">Realizar operación</button>
     
-
 </form>
 
-<article >
+<div>
     <ul >
         {% for item in msgError %}
         <li>{{item}}</li>
         {% endfor %}
 
     </ul>
-</article>
+
+</div>
 
 
 {% endblock %}
