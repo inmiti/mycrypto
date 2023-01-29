@@ -1,5 +1,5 @@
 from proyecto import app
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 from proyecto.models import *
 from datetime import date    
 
@@ -31,8 +31,16 @@ def operar():
         if errores:
             return render_template("purchase.html", pageTitle="Compras_Ventas_Intercambios", msgError=errores, dataForm = request.form)
         else:
-            insert(request.form)
-       
+            insert([ request.form['moneda_from'],
+                        request.form['cantidad_from'],
+                        request.form['moneda_to'],
+                        request.form['cantidad_to'],
+                        request.form['pu']])
+            return redirect(url_for( 'inicio' ))
+            #print("este es el registro: ",request.form, type(request.form) )
+            #return "Enviar datos"
+            
+            
         
         
         
