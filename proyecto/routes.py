@@ -1,7 +1,8 @@
 from proyecto import app
 from flask import render_template, request, redirect, url_for
 from proyecto.models import *
-from datetime import date    
+from datetime import datetime
+
 
 
 def validateForm(requestForm):
@@ -31,7 +32,12 @@ def operar():
         if errores:
             return render_template("purchase.html", pageTitle="Compras_Ventas_Intercambios", msgError=errores, dataForm = request.form)
         else:
-            insert([ request.form['moneda_from'],
+            diaHora = datetime.now()
+            dia = diaHora.strftime('%Y-%m-%d')
+            hora = diaHora.strftime('%H:%M:%S')
+            insert([ dia, 
+                        hora,
+                        request.form['moneda_from'],
                         request.form['cantidad_from'],
                         request.form['moneda_to'],
                         request.form['cantidad_to'],

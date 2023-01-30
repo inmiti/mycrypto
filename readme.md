@@ -1,7 +1,7 @@
 
 # Aplicación Web MYCRYPTO
 
-- Programa hecho en python con el framework Flask, App MyCrypto, con motor de base de datos SQLite
+- Programa hecho en python con el framework Flask, App MyCrypto, con motor de base de datos SQLite y API https://www.coinapi.io/.
 
 ## Instalar librerías
 
@@ -15,11 +15,11 @@ pip install -r requirements.txt
 
 flask https://flask.palletsprojects.com/en/2.2.x/
 
-dotenv
+dotenv https://www.dotenv.org/
 
-WTF
+WTF https://flask-wtf.readthedocs.io/en/1.0.x/
 
-request
+request https://requests.readthedocs.io/en/latest/#
 
 ## Ejecutar el servidor con .env
 
@@ -59,4 +59,6 @@ flask --app hello --debug run -p 5001
 ## Base de datos
 
 - Crear base de datos mycrypto.sgqlite utilizando para ello la sentencia sql incluida en el archivo "mycrypto_create.sql", todo en el directorio "data". 
+
+## API
 
