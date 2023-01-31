@@ -9,8 +9,8 @@
         <label for="moneda_from">
             From:
             <select id="moneda_from" name="moneda_from">
-            <option value="{{dataForm.moneda_from}}" >Seleccione moneda</option>
-            <option >EUR</option>
+            <option value="{{dataForm.moneda_to}}" selected>Seleccione moneda</option>
+            <option>EUR</option>
             <option>BTC</option>
             <option>USDT</option>
             <option>ETH</option>
@@ -43,12 +43,7 @@
             <input type="number" id="cantidad_from" name="cantidad_from" value="{{dataForm.cantidad_from}}" placeholder="Introduzca cantidad en moneda from" step="0.01" >
             </label>
 
-            <a class="calcular" href="#">
-                <span class="material-symbols-outlined">
-                    calculate
-                    </span>
-                    <small>Calcular</small>
-                </a>
+            <input type="submit" name ="calcular" value="Calcular">
 
         <label for="cantidad_to">
             Q (To):
@@ -61,6 +56,7 @@
             </label>
     </div>
     
+    <input type="submit" name = 'operar' value="Operar">
     <button type="submit" value="Guardar">Realizar operación</button>
     
 </form>
