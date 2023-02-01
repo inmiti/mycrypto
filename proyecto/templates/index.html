@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block section %}
 <h1>MOVIMIENTOS</h1>
-
+{% if data %}
 <table role="grid">
     <thead>
         <tr>
@@ -11,6 +11,8 @@
             <th>Q (From)</th>
             <th>To</th>
             <th>Q (To)</th>
+            <th>P.U.</th>
+            
         </tr>    
     </thead>
     <tbody>
@@ -23,11 +25,16 @@
             <td>{{registro.cantidad_from}}</td>
             <td>{{registro.moneda_to}}</td>
             <td>{{registro.cantidad_to}}</td>
+            <td>{{registro.pu}}</td>
         </tr>
         {% endfor %}
     </tbody>
     
     
 </table>
+{% else %}
+    <h3>No existen datos de movimientos</h3>
+
+{% endif %}
 
 {% endblock %}

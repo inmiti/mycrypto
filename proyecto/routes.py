@@ -25,42 +25,21 @@ def inicio():
 @app.route("/purchase",methods=["GET","POST"])
 def operar():
     if request.method == "GET":
-        return render_template("purchase.html", pageTitle="Compras_Ventas_Intercambios", dataForm =None)
+        return render_template("purchase.html", pageTitle="Compras_Ventas_Intercambios", dataForm =None, pu = None)
     else:
         errores = validateForm1(request.form)
         if errores:
             return render_template("purchase.html", pageTitle="Compras_Ventas_Intercambios", msgError=errores, dataForm = request.form)
         else:
             if 'calcular' in request.form:
-                print(cambio(request.form['moneda_from']))
-                return "llamada a api"
+                
+                precio_unitario = cambio(request.form['moneda_from'], request.form['moneda_to'])
+                cant_to = round(float(request.form['cantidad_from'])*precio_unitario,2)
+                return  render_template ("purchase.html", pageTitle="Compras_Ventas_Intercambios", dataForm = request.form,pu = precio_unitario, cantidad_to = cant_to )
               
                 
-                
-                '''
-                  #print( cambio(request.form['moneda_from'],request.form['moneda_to']))
-
-                cant_to = float(request.form['cantidad_from'])* float(precio_unit)
-                cant_to_str = str(cant_to)
-                list_form = {
-                    'moneda_from' : request.form['moneda_from'],
-                    'moneda_to' : request.form['moneda_to'],
-                    'cantidad_from' : request.form['cantidad_form'],
-                    'cantidad_to' : cant_to_str,
-                    'pu' : precio_unit
-                }
-                
-                return render_template("purchase.html", pageTitle="Compras_Ventas_Intercambios", msgError=errores, dataForm = list_form)
-            
-            
             if 'operar' in request.form:
-                return 'guardar en sqlite'
-            
-            else:
 
-            
-                precio_unit = get_pu(request.form['moneda_from'],request.form['moneda_to'])
-                cant_to = float(request.form['cantidad_from'])/precio_unit
                 diaHora = datetime.now()
                 dia = diaHora.strftime('%Y-%m-%d')
                 hora = diaHora.strftime('%H:%M:%S')
@@ -71,13 +50,7 @@ def operar():
                             request.form['cantidad_from'],
                             request.form['moneda_to'],
                             request.form['cantidad_to'],
-                            precio_unit])
+                            request.form['pu']])
 
-            return redirect(url_for( 'inicio' ))
-            
-        
-           
-            #print("este es el registro: ",request.form, type(request.form) )
-            #return "Enviar datos"
+                return redirect(url_for( 'inicio' ))
 
-'''

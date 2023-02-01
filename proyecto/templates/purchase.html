@@ -9,30 +9,31 @@
         <label for="moneda_from">
             From:
             <select id="moneda_from" name="moneda_from">
-            <option value="{{dataForm.moneda_to}}" selected>Seleccione moneda</option>
-            <option>EUR</option>
-            <option>BTC</option>
-            <option>USDT</option>
-            <option>ETH</option>
-            <option>BNB</option>
-            <option>ADA</option>
-            <option>DOT</option>
-            <option>MATIC</option>
+            <option value="{{dataForm.moneda_from}}" selected>Seleccione moneda</option>
+            <option value="EUR" {% if dataForm.moneda_from == "EUR" %} selected {% endif%}>EUR</option>
+            <option value="BTC" {% if dataForm.moneda_from == "BTC" %} selected {% endif%}>BTC</option>
+            <option value="USDT" {% if dataForm.moneda_from == "USDT" %} selected {% endif%}>USDT</option>
+            <option value="ETH" {% if dataForm.moneda_from == "ETH" %} selected {% endif%}>ETH</option>
+            <option value="BNB" {% if dataForm.moneda_from == "BNB" %} selected {% endif%}>BNB</option>
+            <option value="ADA" {% if dataForm.moneda_from == "ADA" %} selected {% endif%}>ADA</option>
+            <option value="DOT" {% if dataForm.moneda_from == "DOT" %} selected {% endif%}>DOT</option>
+            <option value="MATIC" {% if dataForm.moneda_from == "MATIC" %} selected {% endif%}>MATIC</option>
             </select>
         </label>
-    
+
+          
         <label for="moneda_to">
             To
             <select id="moneda_to" name="moneda_to">
             <option value="{{dataForm.moneda_to}}" selected>Seleccione moneda</option>
-            <option>EUR</option>
-            <option>BTC</option>
-            <option>USDT</option>
-            <option>ETH</option>
-            <option>BNB</option>
-            <option>ADA</option>
-            <option>DOT</option>
-            <option>MATIC</option>
+            <option value="EUR" {% if dataForm.moneda_to == "EUR" %} selected {% endif%}>EUR</option>
+            <option value="BTC" {% if dataForm.moneda_to == "BTC" %} selected {% endif%}>BTC</option>
+            <option value="USDT" {% if dataForm.moneda_to == "USDT" %} selected {% endif%}>USDT</option>
+            <option value="ETH" {% if dataForm.moneda_to == "ETH" %} selected {% endif%}>ETH</option>
+            <option value="BNB" {% if dataForm.moneda_to == "BNB" %} selected {% endif%}>BNB</option>
+            <option value="ADA" {% if dataForm.moneda_to == "ADA" %} selected {% endif%}>ADA</option>
+            <option value="DOT" {% if dataForm.moneda_to == "DOT" %} selected {% endif%}>DOT</option>
+            <option value="MATIC" {% if dataForm.moneda_to == "MATIC" %} selected {% endif%}>MATIC</option>
             </select>
         </label>
     </div>
@@ -47,7 +48,7 @@
 
         <label for="cantidad_to">
             Q (To):
-            <input type="number" id="cantidad_to" name="cantidad_to" value="{{dataForm.cantidad_to}}" placeholder="Presione la calculadora" step="0.01">
+            <input type="number" id="cantidad_to" name="cantidad_to" value="{{cantidad_to}}" placeholder="Presione la calculadora" step="0.01">
             </label>
 
         <label class="contrast" for="pu">
@@ -57,7 +58,7 @@
     </div>
     
     <input type="submit" name = 'operar' value="Operar">
-    <button type="submit" value="Guardar">Realizar operación</button>
+    
     
 </form>
 
