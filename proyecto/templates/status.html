@@ -1,8 +1,36 @@
 {% extends "base.html" %}
 {% block section %}
-<h1>MOVIMIENTOS</h1>
+<h1>ESTADO DE LA INVERSION</h1>
 
-<table>
+<form action="/status" method="post">
+    <section>
+        <br>
+        <label for="invertido">
+            Invertido:
+            <input type="number" id="invertido" name="invertido" value="{{invertido}}"  step="0.01" >
+            </label>
+        
+        <label for="recuperado">
+            Recuperado:
+            <input type="number" id="recuperado" name="recuperado" value="{{recuperado}}" step="0.01">
+            </label>
+    
+        <label for="valor_compra">
+            Valor de compra:
+            <input type="number" id="valor_compra" name="valor_compra" value="{{valor_compra}}" step="0.01">
+            </label>
+    
+        <label for="valor_actual">
+            Valor de compra:
+            <input type="number" id="valor_actual" name="valor_actual" value="{{valor_actual}}" step="0.01">
+            </label>
+
+    </section>
+  
+    <a href="javascript:history.back()">Volver</a>
+    
+    
+</form>
 
     
 </table>

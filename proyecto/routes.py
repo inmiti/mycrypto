@@ -54,3 +54,7 @@ def operar():
 
                 return redirect(url_for( 'inicio' ))
 
+@app.route("/status")
+def resumen():
+
+    return render_template("status.html", pageTitle="Estado")
