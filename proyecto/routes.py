@@ -15,6 +15,7 @@ def validateForm1(requestForm):
     
     return errores
 
+
 @app.route("/")
 def inicio():
 
@@ -56,5 +57,6 @@ def operar():
 
 @app.route("/status")
 def resumen():
-
-    return render_template("status.html", pageTitle="Estado")
+    print(sum_from('BTC'))
+    return "ver suma moneda from"
+   # return render_template("status.html", pageTitle="Estado")
