@@ -56,12 +56,12 @@ def sum_from(mon):
         for campo in columnas:
             dato[campo[0]]=fila[posicion_col]
             posicion_col+=1
-            resultado.append(dato)
-    suma = 0.0
-    i = 0
-    for i in range(len(resultado)):
-        suma += float(resultado[i]['cantidad_from'])
-        i+=1
+        resultado.append(dato)
+        suma = 0.0
+        i = 0
+        for i in range(len(resultado)):
+            suma += float(resultado[i]['cantidad_from'])
+            i+=1
     con.close()
     return suma
 
@@ -69,28 +69,21 @@ def sum_from(mon):
 def sum_to(mon):
     con = sqlite3.connect(ORIGIN_DATA)
     cur = con.cursor()
-    res_from = cur.execute("SELECT * FROM mycrypto where moneda_to = ?",(mon,) )
-    
-    filas_from = res_from.fetchall() #obtengo filas en tupla
-    columnas_from= res_from.description
-    
+    res = cur.execute("SELECT * FROM mycrypto where moneda_to = ?",(mon,) )  
+    filas = res.fetchall() #obtengo filas en tupla
+    columnas= res.description   
     resultado = []
-    
-    for fila in filas_from:
+    for fila in filas:
         dato = {}
         posicion_col = 0
-        
-        for campo in columnas_from:
+        for campo in columnas:
             dato[campo[0]]=fila[posicion_col]
             posicion_col+=1
-
         resultado.append(dato)
-
-    suma = 0.0
-    i = 0
-    for i in range(len(resultado)):
-        suma += float(resultado[i]['cantidad_to'])
-        i+=1
-    
+        sumaT = 0.0
+        i = 0
+        for i in range(len(resultado)):
+            sumaT += float(resultado[i]['cantidad_to'])
+            i+=1
     con.close()
-    return suma
+    return sumaT

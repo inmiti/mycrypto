@@ -19,9 +19,21 @@
     </header>
     <nav class="container">
         <ul>
-            <li><a href="/">Inicio</a></li>
-            <li> <a href="/purchase">Compra</a> </li>
-            <li> <a href="/status">Estado</a> </li>
+            {% if page == "Inicio" %}
+                <li>Inicio</li>
+                <li> <a href="/purchase">Compra</a> </li>
+                <li> <a href="/status">Estado</a> </li>
+            {% endif %}
+            {% if page == "Compra" %}
+                <li><a href="/">Inicio</a></li>
+                <li> Compra </li>
+                <li> <a href="/status">Estado</a> </li>
+            {% endif %}
+            {% if page == "Estado" %}
+                <li><a href="/">Inicio</a></li>
+                <li> <a href="/purchase">Compra</a> </li>
+                <li> Estado </li>
+            {% endif %}
         </ul>
     </nav>
     <section class="container">
