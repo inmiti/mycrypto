@@ -42,7 +42,18 @@ def cambio(monedaFrom, monedaTo):
         return resultado['rate']
     else:
         return  resultado['error']
-   
+
+
+def cambio2(coin_from, coin_to):  #aqui he mockeado la api cuando el limite de peticiones se ha excedido de 100 al día 
+     print("llamo api") 
+     mock_api = { 
+         "time":"2023-01-31T20:21:18.0000000Z", 
+         "asset_id_base":"DOT", 
+         "asset_id_quote": "EUR", 
+         "rate": 0.09 
+     } 
+     return mock_api['rate']
+
 def sum_from(mon):
     con = sqlite3.connect(ORIGIN_DATA)
     cur = con.cursor()
