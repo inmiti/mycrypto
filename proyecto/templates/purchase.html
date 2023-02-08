@@ -18,6 +18,8 @@
             <option value="ADA" {% if dataForm.moneda_from == "ADA" %} selected {% endif%}>ADA</option>
             <option value="DOT" {% if dataForm.moneda_from == "DOT" %} selected {% endif%}>DOT</option>
             <option value="MATIC" {% if dataForm.moneda_from == "MATIC" %} selected {% endif%}>MATIC</option>
+            <option value="XRP" {% if dataForm.moneda_from == "XRP" %} selected {% endif%}>XRP</option>
+            <option value="SOL" {% if dataForm.moneda_from == "SOL" %} selected {% endif%}>SOL</option>
             </select>
         </label>
 
@@ -34,6 +36,8 @@
             <option value="ADA" {% if dataForm.moneda_to == "ADA" %} selected {% endif%}>ADA</option>
             <option value="DOT" {% if dataForm.moneda_to == "DOT" %} selected {% endif%}>DOT</option>
             <option value="MATIC" {% if dataForm.moneda_to == "MATIC" %} selected {% endif%}>MATIC</option>
+            <option value="XRP" {% if dataForm.moneda_to == "XRP" %} selected {% endif%}>XRP</option>
+            <option value="SOL" {% if dataForm.moneda_to == "SOL" %} selected {% endif%}>SOL</option>
             </select>
         </label>
     </div>
@@ -44,22 +48,21 @@
             <input type="number" id="cantidad_from" name="cantidad_from" value="{{cantidad_from}}" placeholder="Introduzca cantidad en moneda from" step="0.01" >
             </label>
 
-            <input type="submit" name ="calcular" value="Calcular">
+            <input type="submit" id ="calcular" name ="calcular" value="Calcular">
 
         <label for="cantidad_to">
             Q (To):
-            <input type="number" id="cantidad_to" name="cantidad_to" value="{{cantidad_to}}" placeholder="Presione la calculadora" step="0.01">
+            <input type="number" id="cantidad_to" name="cantidad_to" readonly value="{{cantidad_to}}" placeholder="Presione la calculadora" step="0.01">
             </label>
 
         <label class="contrast" for="pu">
             PU:
-            <input type="number" id="pu" name="pu" value="{{pu}}" placeholder="Precio unitario" step="0.01" >
+            <input type="number" id="pu" name="pu" readonly value="{{pu}}" placeholder="Precio unitario" step="0.01" >
             </label>
     </div>
     
-    <input type="submit" name = 'operar' value="Operar">
-    
-    
+    <input type="submit" id ='operar' name = 'operar' value="Operar">
+     
 </form>
 
 <div>

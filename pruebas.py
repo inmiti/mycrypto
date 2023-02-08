@@ -1,12 +1,34 @@
 import requests
+import sqlite3
+from config import *
+from datetime import datetime
 
-r = requests.get('https://rest.coinapi.io/v1/exchangerate/BTC/EUR?apikey=7872A0C1-144C-47DF-96DD-2970F897CF64')
-    
-print(r.status_code)
-print(r.text)
 
-resultado = r.json()
+
+con = sqlite3.connect(ORIGIN_DATA)
+cur = con.cursor()
+res = cur.execute("SELECT * FROM mycrypto where moneda_to = 'ADA'")  
+
+filas = res.fetchall() #obtengo filas en tupla
+columnas= res.description   
+resultado = []
+for fila in filas:
+    dato = {}
+    posicion_col = 0
+    for campo in columnas:
+        dato[campo[0]]=fila[posicion_col]
+        posicion_col+=1
+    resultado.append(dato)
 
 print(resultado)
-print(resultado['rate'], type(resultado['rate']), resultado['asset_id_base'], type(resultado['asset_id_base']))
+if resultado == []:    
+    sumaT = 0.0
+else: 
+    sumaT = 0.0
+    i = 0
+    for i in range(len(resultado)):
+        sumaT += float(resultado[i]['cantidad_to'])
+        i+=1
 
+con.close()
+print(sumaT, type(sumaT))
