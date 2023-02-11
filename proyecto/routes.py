@@ -12,6 +12,10 @@ def validateForm1(requestForm):
         errores.append("Cantidad negativa o nula, introduzca una cantidad positiva.")   
     if requestForm['moneda_from'] == requestForm['moneda_to']:
         errores.append("Para poder operar las monedas han de ser diferentes entre sí.")
+    if requestForm['moneda_from'] == "EUR" and requestForm['moneda_to'] != "BTC" :
+        errores.append("Con EUR solo puede comprar BTC.") 
+    if requestForm['moneda_from'] != "BTC" and requestForm['moneda_to'] == "EUR" :
+        errores.append("Para obtener EUR solo puede vender BTC.") 
     return errores
 
 
@@ -36,21 +40,8 @@ def validateForm3(requestForm):
     if requestForm['cantidad_from'] == "" or float(requestForm['cantidad_from']) <= 0.0 or requestForm['cantidad_to'] == "" or float(requestForm['cantidad_to']) <= 0.0:
         errores.append("Cantidad negativa o nula: Introduzca una cantidad positiva.")  
     return errores
-'''
-    try:
-        if round(float(requestForm['pu']),2) !=  round(cambio(requestForm['moneda_from'], requestForm['moneda_to']),2) or requestForm['pu'] == None: #or requestForm['cantidad_to'] != round(float(request.form['cantidad_from'])*cambio(requestForm['moneda_from'], requestForm['moneda_to']),2):
-            errores.append('El precio unitario no es correcto, pulse calcular antes de operar.')
-            print('pu reqquest',round(float(requestForm['pu']),2), 'pu cambio', round(cambio(requestForm['moneda_from'], requestForm['moneda_to']),2)  )
-        if float(requestForm['cantidad_to']) != (round(float(requestForm['cantidad_from'])* cambio(requestForm['moneda_from'], requestForm['moneda_to'])),2):
-            print('cant from formulario', float(requestForm['cantidad_from']))
-            print('cant to fromulario', requestForm['cantidad_to'], 'cant_calculada', float(requestForm['cantidad_from'])* cambio(requestForm['moneda_from'], requestForm['moneda_to']) )
-            errores.append('La cantidad no es correcta, pulse calcular antes de operar.')
 
-    except ValueError:
-        errores.append('La conversión no es correcta, pulse calcular antes de operar.')
-    '''
     
-
 
 @app.route("/")
 def inicio():
@@ -103,7 +94,7 @@ def resumen():
     invertido = round(sum_from('EUR'),2)
     recuperado = round(sum_to('EUR'),2)
     valor_compra = round(invertido - recuperado,2)
-    valor_actual = eur_monFrom() - eur_monTo()
+    valor_actual = round(eur_monFrom() - eur_monTo(),2)
     return render_template("status.html", pageTitle="Estado", page ="Estado", invertido = invertido, recuperado = recuperado, valor_compra = valor_compra, valor_actual = valor_actual)  
 
 

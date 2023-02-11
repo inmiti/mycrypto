@@ -62,3 +62,6 @@ flask --app hello --debug run -p 5001
 
 ## API
 
+- Acceder a la api: https://docs.coinapi.io/
+- Obtener key
+- Introducir la key obtenida en config.py

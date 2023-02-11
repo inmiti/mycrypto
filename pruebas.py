@@ -1,34 +1,24 @@
+#ARCHIVO USADO PARA PRUEBAS
+
 import requests
 import sqlite3
 from config import *
 from datetime import datetime
 
+'''
+cryptos = ["BTC","SOL"]
 
+listaDict = []
+for i in cryptos:
+    r = requests.get(f'https://rest.coinapi.io/v1/exchangerate/{i}/EUR?apikey={APIKEY}') 
+    resultado = r.json()
+    listaDict.append(resultado)
 
-con = sqlite3.connect(ORIGIN_DATA)
-cur = con.cursor()
-res = cur.execute("SELECT * FROM mycrypto where moneda_to = 'ADA'")  
+for i in listaDict:
+   if 'BTC' in i['asset_id_base']:
+        print(i['rate']) 
 
-filas = res.fetchall() #obtengo filas en tupla
-columnas= res.description   
-resultado = []
-for fila in filas:
-    dato = {}
-    posicion_col = 0
-    for campo in columnas:
-        dato[campo[0]]=fila[posicion_col]
-        posicion_col+=1
-    resultado.append(dato)
+    #return pu
+ 
 
-print(resultado)
-if resultado == []:    
-    sumaT = 0.0
-else: 
-    sumaT = 0.0
-    i = 0
-    for i in range(len(resultado)):
-        sumaT += float(resultado[i]['cantidad_to'])
-        i+=1
-
-con.close()
-print(sumaT, type(sumaT))
+'''

@@ -3,6 +3,7 @@ from config import *
 from datetime import datetime
 import requests
 
+
 def select_all():
     con = sqlite3.connect(ORIGIN_DATA)
     cur = con.cursor()
@@ -44,15 +45,22 @@ def cambio(monedaFrom, monedaTo):
         return  resultado['error']
 
 
-def cambio2(coin_from, coin_to):  #aqui he mockeado la api cuando el limite de peticiones se ha excedido de 100 al día 
-     print("llamo api") 
-     mock_api = { 
-         "time":"2023-01-31T20:21:18.0000000Z", 
-         "asset_id_base":"DOT", 
-         "asset_id_quote": "EUR", 
-         "rate": 0.09 
-     } 
-     return mock_api['rate']
+def cambioLD(mon): 
+ 
+    cryptos = ["EUR", "BTC", "USDT", "ETH", "BNB", "ADA", "DOT", "MATIC", "XRP", "SOL"]
+
+    listaDict = []
+    for i in cryptos:
+        r = requests.get(f'https://rest.coinapi.io/v1/exchangerate/{i}/EUR?apikey={APIKEY}') 
+        resultado = r.json()
+        listaDict.append(resultado)
+
+    for i in listaDict:
+        if mon in i['asset_id_base']:
+            pu = i['rate']
+    return pu
+ 
+
 
 def sum_from(mon):
     con = sqlite3.connect(ORIGIN_DATA)
@@ -121,13 +129,14 @@ def eur_monFrom():
             dato[campo[0]]=fila[posicion_col]
             posicion_col+=1
         resultado.append(dato)
+    
     if resultado == []:
         cant = 0.0
     else:
         cant = 0.0
         i = 0
         for i in range(len(resultado)):
-            pu = float(cambio(resultado[i]['moneda_from'],'EUR'))
+            pu = float(cambioLD(resultado[i]['moneda_from']))
             cant += round(pu * float(resultado[i]['cantidad_from']),2)
             i+=1
     con.close()
@@ -153,7 +162,7 @@ def eur_monTo():
         cant = 0.0
         i = 0
         for i in range(len(resultado)):
-            pu = float(cambio(resultado[i]['moneda_to'],'EUR'))
+            pu = float(cambioLD(resultado[i]['moneda_to']))
             cant += round(pu * float(resultado[i]['cantidad_to']),2)
             i+=1
     con.close()
