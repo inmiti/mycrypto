@@ -3,5 +3,5 @@ entorno/
 **/__pycache__/
 config.py
 .vscode/
-pruebas.py
+.pruebas.py
 monedas.py
