@@ -95,7 +95,8 @@ def resumen():
     recuperado = round(sum_to('EUR'),2)
     valor_compra = round(invertido - recuperado,2)
     valor_actual = saldo()
-    return render_template("status.html", pageTitle="Estado", page ="Estado", invertido = invertido, recuperado = recuperado, valor_compra = valor_compra, valor_actual = valor_actual)  
+    resultado = round(valor_actual - valor_compra,2)
+    return render_template("status.html", pageTitle="Estado", page ="Estado", invertido = invertido, recuperado = recuperado, valor_compra = valor_compra, valor_actual = valor_actual, resultado = resultado)  
 
 
                 

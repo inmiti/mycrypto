@@ -29,3 +29,9 @@ a.calcular{
 
 }
 
+.positive {
+    color: green;
+      }
+.negative {
+    color: red;
+}

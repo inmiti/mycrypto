@@ -24,6 +24,12 @@
             Valor actual:
             <input type="number" id="valor_actual" name="valor_actual" readonly value="{{valor_actual}}" step="0.01">
             </label>
+        
+        <label for="resultado">
+            Ganancia o Pérdida:
+            <input type="number" id="resultado" name="resultado" readonly value="{{resultado}}" class="{{ 'positive' if resultado >= 0 else 'negative' }}" step="0.01">
+
+            </label>
 
     </section>
   
