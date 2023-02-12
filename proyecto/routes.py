@@ -13,9 +13,9 @@ def validateForm1(requestForm):
     if requestForm['moneda_from'] == requestForm['moneda_to']:
         errores.append("Para poder operar las monedas han de ser diferentes entre sí.")
     if requestForm['moneda_from'] == "EUR" and requestForm['moneda_to'] != "BTC" :
-        errores.append("Con EUR solo puede comprar BTC.") 
+        errores.append("Con EUR solo puede comprar BTC. Compre previamente BTC y después cambie a la criptomoneda que desea.") 
     if requestForm['moneda_from'] != "BTC" and requestForm['moneda_to'] == "EUR" :
-        errores.append("Para obtener EUR solo puede vender BTC.") 
+        errores.append("Para obtener EUR solo puede vender BTC. Cambie su criptomoneda previamente a BTC.") 
     return errores
 
 
@@ -94,7 +94,7 @@ def resumen():
     invertido = round(sum_from('EUR'),2)
     recuperado = round(sum_to('EUR'),2)
     valor_compra = round(invertido - recuperado,2)
-    valor_actual = saldo()
+    valor_actual = round(saldo(),2)
     resultado = round(valor_actual - valor_compra,2)
     return render_template("status.html", pageTitle="Estado", page ="Estado", invertido = invertido, recuperado = recuperado, valor_compra = valor_compra, valor_actual = valor_actual, resultado = resultado)  
 

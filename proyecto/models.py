@@ -57,12 +57,16 @@ def saldo():
     dictMon = { "EUR":0.0, "BTC":0.0, "USDT":0.0, "ETH":0.0, "BNB":0.0, 
                     "ADA":0.0, "DOT":0.0, "MATIC":0.0, "XRP":0.0, "SOL":0.0}
     dictMonFrom = dict_monFrom()
+    print(dictMonFrom)
     dictMonTo = dict_monTo()
+    print(dictMonTo)
 
     for monTo in dictMonTo:
         for monFrom in dictMonFrom:
             if monTo == monFrom:
+                print(dictMon)
                 dictMon[monTo] = dictMonTo[monTo] - dictMonFrom[monFrom]
+                
     eurTot = 0.0
     for mon in dictMon:
         if dictMon[mon] == 0.0:
