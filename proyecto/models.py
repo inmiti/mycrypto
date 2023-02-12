@@ -55,57 +55,59 @@ def sum_to(mon):
     return sumaTo
 
 
-def eur_monFrom():
+def dict_monFrom():
+    conectFrom = Conexion("SELECT * FROM mycrypto WHERE moneda_from is NOT 'EUR'")
+    consult = conectFrom.consulta()
+    dicMon = { "EUR":0.0, "BTC":0.0, "USDT":0.0, "ETH":0.0, "BNB":0.0, 
+                    "ADA":0.0, "DOT":0.0, "MATIC":0.0, "XRP":0.0, "SOL":0.0}
+  
+    if consult == []:
+        dicMon = { "EUR":0.0, "BTC":0.0, "USDT":0.0, "ETH":0.0, "BNB":0.0, 
+                    "ADA":0.0, "DOT":0.0, "MATIC":0.0, "XRP":0.0, "SOL":0.0}
+    else:
+        for mon in dicMon:
+            i = 0
+            for i in range(len(consult)):
+                if mon == consult[i]['moneda_from']:
+                    dicMon[mon] += consult[i]['cantidad_from']
+                    i += 1
+    return dicMon
 
-    con = sqlite3.connect(ORIGIN_DATA)
-    cur = con.cursor()
-    res = cur.execute("SELECT * FROM mycrypto WHERE moneda_from is NOT 'EUR'" )
-    filas = res.fetchall() #obtengo filas en tupla
-    columnas= res.description
-    resultado = []
-    for fila in filas:
-        dato = {}
-        posicion_col = 0
-        for campo in columnas:
-            dato[campo[0]]=fila[posicion_col]
-            posicion_col+=1
-        resultado.append(dato)
-    
-    if resultado == []:
-        cant = 0.0
+ 
+def dict_monTo():
+    conect = Conexion("SELECT * FROM mycrypto WHERE moneda_to is NOT 'EUR'")
+    consult = conect.consulta()
+    dicMon = { "EUR":0.0, "BTC":0.0, "USDT":0.0, "ETH":0.0, "BNB":0.0, 
+                    "ADA":0.0, "DOT":0.0, "MATIC":0.0, "XRP":0.0, "SOL":0.0}
+    if consult == []:
+        dicMon = { "EUR":0.0, "BTC":0.0, "USDT":0.0, "ETH":0.0, "BNB":0.0, 
+                    "ADA":0.0, "DOT":0.0, "MATIC":0.0, "XRP":0.0, "SOL":0.0}
     else:
-        cant = 0.0
-        i = 0
-        for i in range(len(resultado)):
-            pu = float(cambioLD(resultado[i]['moneda_from']))
-            cant += round(pu * float(resultado[i]['cantidad_from']),2)
-            i+=1
-    con.close()
-    return cant
-    
-def eur_monTo():
-    con = sqlite3.connect(ORIGIN_DATA)
-    cur = con.cursor()
-    res = cur.execute("SELECT * FROM mycrypto WHERE moneda_to is NOT 'EUR'" )
-    filas = res.fetchall() #obtengo filas en tupla
-    columnas= res.description
-    resultado = []
-    for fila in filas:
-        dato = {}
-        posicion_col = 0
-        for campo in columnas:
-            dato[campo[0]]=fila[posicion_col]
-            posicion_col+=1
-        resultado.append(dato)
-    if resultado == []:
-        cant = 0.0
-    else:
-        cant = 0.0
-        i = 0
-        for i in range(len(resultado)):
-            pu = float(cambioLD(resultado[i]['moneda_to']))
-            cant += round(pu * float(resultado[i]['cantidad_to']),2)
-            i+=1
-    con.close()
-    return cant
-    
+        for mon in dicMon:
+            i = 0
+            for i in range(len(consult)):
+                if mon == consult[i]['moneda_to']:
+                    dicMon[mon] += consult[i]['cantidad_to']
+                    i += 1
+    return dicMon
+
+def saldo():
+    dictMon = { "EUR":0.0, "BTC":0.0, "USDT":0.0, "ETH":0.0, "BNB":0.0, 
+                    "ADA":0.0, "DOT":0.0, "MATIC":0.0, "XRP":0.0, "SOL":0.0}
+    dictMonFrom = dict_monFrom()
+    print(dictMonFrom['DOT'])
+    dictMonTo = dict_monTo()
+    print(dictMonTo['DOT'])
+
+    for monTo in dictMonTo:
+        for monFrom in dictMonFrom:
+            if monTo == monFrom:
+                dictMon[monTo] = dictMonTo[monTo] - dictMonFrom[monFrom]
+    eurTot = 0.0
+    for mon in dictMon:
+        if dictMon[mon] == 0.0:
+            eurTot += 0.0
+        if dictMon[mon] != 0.0:
+            eurTot += round(dictMon[mon]* cambio(mon, 'EUR'),2)
+    return eurTot
+  
